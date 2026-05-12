@@ -1,5 +1,7 @@
+import AppRouter from "./app/router";
+
 function App() {
-  return <div className="text-3xl font-bold p-10">Dashboard App</div>;
+  return <AppRouter />;
 }
 
 export default App;
