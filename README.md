@@ -4,6 +4,8 @@ A base dashboard app built with React 19 — covers auth, CRUD, routing, and sta
 
 > ⏱️ Initial build: ~21.5 hours
 
+> 🔗 **Live demo:** [dashboard-demo.vercel.app](https://dashboard-demo-ten-murex.vercel.app/)
+
 ---
 
 ## Tech Stack
@@ -27,6 +29,9 @@ A base dashboard app built with React 19 — covers auth, CRUD, routing, and sta
 ```bash
 # install dependencies
 npm install
+
+# copy env file
+cp .env.example .env
 
 # start dev server
 npm start
@@ -59,7 +64,7 @@ dashboard-demo
 │   └── index.html
 └── src/
     ├── api/
-    │   └── axios.js              # axios instance with base URL + auth header
+    │   └── axios.js              # axios instance with base URL from .env + auth header
     ├── app/
     │   └── router.jsx            # all routes defined here
     ├── components/
