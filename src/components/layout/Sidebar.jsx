@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { RiHomeSmileFill } from "react-icons/ri";
 import { AiFillProduct } from "react-icons/ai";
 import { IoLogOut } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const navLinks = [
   { label: "Home", path: "/", icon: RiHomeSmileFill },
@@ -12,6 +13,11 @@ const navLinks = [
 export default function Sidebar({ open, onClose }) {
   const location = useLocation();
   const { logout } = useAuth();
+
+  const handleLogout = () => {
+    toast.success("Logged out successfully.");
+    logout();
+  };
 
   return (
     <>
@@ -52,7 +58,7 @@ export default function Sidebar({ open, onClose }) {
 
         <div className="px-3 py-4 border-t">
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
           >
             <IoLogOut size={17} />

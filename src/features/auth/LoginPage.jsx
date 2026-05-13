@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "./api";
 import useAuthStore from "./store";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function LoginPage() {
       login(data, data.accessToken);
       navigate("/");
     } catch {
+      toast.error("Login failed");
       setError("Invalid username or password");
     } finally {
       setLoading(false);

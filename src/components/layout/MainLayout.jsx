@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 
 export default function MainLayout() {
@@ -17,7 +16,6 @@ export default function MainLayout() {
           <Outlet />
         </main>
       </div>
-      <Toaster position="top-center" />
     </div>
   );
 }
