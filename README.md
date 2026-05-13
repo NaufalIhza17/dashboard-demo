@@ -129,7 +129,7 @@ Mobile performance sits at 52 — Total Blocking Time is the main bottleneck. So
 
 ## Demo
 
-<!-- here -->
+https://github.com/user-attachments/assets/9083d4ec-4d9e-4b9d-ac9a-14c6bafcb6c9
 
 ---
 
