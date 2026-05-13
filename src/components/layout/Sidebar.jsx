@@ -1,60 +1,65 @@
 import { Link, useLocation } from "react-router-dom";
-import { FiHome, FiBox, FiLogOut } from "react-icons/fi";
-
 import useAuth from "../../hooks/useAuth";
+import { RiHomeSmileFill } from "react-icons/ri";
+import { AiFillProduct } from "react-icons/ai";
+import { IoLogOut } from "react-icons/io5";
 
-export default function Sidebar() {
+const navLinks = [
+  { label: "Home", path: "/", icon: RiHomeSmileFill },
+  { label: "Products", path: "/products", icon: AiFillProduct },
+];
+
+export default function Sidebar({ open, onClose }) {
   const location = useLocation();
-
   const { logout } = useAuth();
 
-  const menus = [
-    {
-      name: "Home",
-      path: "/",
-      icon: <FiHome size={20} />,
-    },
-    {
-      name: "Products",
-      path: "/products",
-      icon: <FiBox size={20} />,
-    },
-  ];
-
   return (
-    <aside className="w-64 bg-white border-r min-h-screen p-5 flex flex-col">
-      <div className="mb-10">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-      </div>
-
-      <nav className="flex flex-col gap-2 flex-1">
-        {menus.map((menu) => {
-          const isActive = location.pathname === menu.path;
-
-          return (
-            <Link
-              key={menu.path}
-              to={menu.path}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition ${
-                isActive ? "bg-black text-white" : "hover:bg-gray-100"
-              }`}
-            >
-              {menu.icon}
-
-              <span>{menu.name}</span>
-            </Link>
-          );
-        })}
-      </nav>
-
-      <button
-        onClick={logout}
-        className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-100 text-red-500 transition"
+    <>
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/20 z-20 md:hidden"
+          onClick={onClose}
+        />
+      )}
+      <aside
+        className={`fixed left-0 top-0 w-64 z-30 h-screen bg-white md:border-r flex flex-col ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 transition-transform duration-300`}
       >
-        <FiLogOut size={20} />
+        <div className="px-5 h-16 flex items-center border-b">
+          <span className="font-bold text-lg tracking-tight">
+            my<span className="text-gray-400">dashboard</span>
+          </span>
+        </div>
 
-        <span>Logout</span>
-      </button>
-    </aside>
+        <nav className="flex-1 px-3 py-4 flex flex-col gap-1">
+          {navLinks.map(({ label, path, icon: Icon }) => {
+            const isActive = location.pathname === path;
+            return (
+              <Link
+                key={path}
+                to={path}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                  isActive
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                }`}
+              >
+                <Icon size={17} />
+                <span>{label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="px-3 py-4 border-t">
+          <button
+            onClick={logout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
+          >
+            <IoLogOut size={17} />
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+    </>
   );
 }

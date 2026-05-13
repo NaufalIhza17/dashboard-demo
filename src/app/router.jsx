@@ -30,7 +30,7 @@ function AppRouter() {
         >
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductPage />} />
-          <Route path="/products-detail/:id" element={<ProductDetailPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
           <Route path="/products/add" element={<AddProductPage />} />
           <Route path="/products/edit/:id" element={<EditProductPage />} />
         </Route>
